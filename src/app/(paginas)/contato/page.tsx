@@ -1,5 +1,4 @@
 import ContatoForm from "@/components/ContactForm/ContactForm";
-import TitlePage from "@/components/TitlePage";
 import { settings } from "@/settings/settings";
 import "@/styles/index.scss";
 import { Metadata } from "next";
