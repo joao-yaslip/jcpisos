@@ -9,6 +9,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { url, settings } from "@/settings/settings";
 import { usePathname } from "next/navigation";
 import { FaMapMarkedAlt } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function Rodape() {
   const { siteName, selosDark, numeroTelefone, ddd, numeroTelefone2, dddSecundario, whatsappApi, whatsappApi2, email } =
@@ -19,8 +20,9 @@ export default function Rodape() {
   const urlFormatted = url.replace(/\/$/, "");
   const fullUrl = `${urlFormatted}${pathname}`;
 
-  const cursor = document.createElement('div');
-  cursor.classList.add('cursor');
+  useEffect(() => {
+  const cursor = document.createElement("div");
+  cursor.classList.add("cursor");
   document.body.appendChild(cursor);
 
   let mouseX = 0;
@@ -28,24 +30,43 @@ export default function Rodape() {
   let cursorX = 0;
   let cursorY = 0;
 
-  document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-  });
+  const handleMouseMove = (e: MouseEvent) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  };
 
-  function animate() {
-      cursorX += (mouseX - cursorX) * 1.0;
-      cursorY += (mouseY - cursorY) * 1.0;
+  document.addEventListener("mousemove", handleMouseMove);
 
-      cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-      requestAnimationFrame(animate);
-  }
+  const animate = () => {
+    cursorX += (mouseX - cursorX) * 1.0;
+    cursorY += (mouseY - cursorY) * 1.0;
+
+    cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+    requestAnimationFrame(animate);
+  };
+
   animate();
 
-  document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('fill'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('fill'));
+  const elements = document.querySelectorAll("a, button");
+
+  const addFill = () => cursor.classList.add("fill");
+  const removeFill = () => cursor.classList.remove("fill");
+
+  elements.forEach((el) => {
+    el.addEventListener("mouseenter", addFill);
+    el.addEventListener("mouseleave", removeFill);
   });
+
+  return () => {
+    document.removeEventListener("mousemove", handleMouseMove);
+    cursor.remove();
+
+    elements.forEach((el) => {
+      el.removeEventListener("mouseenter", addFill);
+      el.removeEventListener("mouseleave", removeFill);
+    });
+  };
+}, []);
 
   return (
     <footer>
