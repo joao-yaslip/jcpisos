@@ -868,7 +868,6 @@
   }
 
   .image {
-    object-fit: contain;
     border-radius: 10px;
   }
 
@@ -931,4 +930,10 @@
   .active {
     border-color: $dark-green;
   }
+}
+
+.h1-hidden{
+  position:absolute;
+  opacity:0;
+  top:-100vh;
 }

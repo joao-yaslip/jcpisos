@@ -55,6 +55,7 @@ export default function First() {
 
   return (
     <section className="piso-section">
+      <h1 className="h1-hidden">Início | JC Pisos Intertravados</h1>
       <div className="container">
         <div className="top">
           {/* Imagem principal */}

@@ -4,6 +4,7 @@ import { FaHouseChimney } from "react-icons/fa6";
 import TitlePage from "@/components/TitlePage";
 import { Metadata } from "next";
 import { settings } from "@/settings/settings";
+import Image from "next/image";
 
 const { siteName } = settings;
 
@@ -44,7 +45,14 @@ export default function SobreNos() {
       <div className="sobre">
         <div className="container-foto">
             <span className="img-bg"></span>
-            <img src="/sobre.jpeg" alt="JC Pisos Intertravados" className="imagem-arco"/>
+            <Image
+              alt="JC Pisos Intertravados"
+              src={`/sobre.jpeg`}
+              width={400}
+              height={400}
+              className="imagem-arco"
+            />
+            {/* <img src="/sobre.jpeg" alt="JC Pisos Intertravados" className="imagem-arco"/> */}
         </div>
 
         <div className="right">

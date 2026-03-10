@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 export default function Contato() {
   return (
     <>
+      <h1 className="h1-hidden">Contato | JC Pisos Intertravados</h1>
       <div className="container-contato" data-aos="fade-up">
         <iframe
           src={mapaEmbed}
